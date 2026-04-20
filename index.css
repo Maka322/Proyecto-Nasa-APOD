@@ -1,0 +1,355 @@
+
+:root {
+    --nasa-red: #FC3D21;
+    --bg-space: #05070a;
+    --glass: rgba(0, 0, 0, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background-color: #000;
+}
+
+body {
+    background-color: #000;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('images/nasa.jpg');
+
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    min-height: 100vh;
+}
+
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.menu-trigger {
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    position: relative;
+    z-index: 2100;
+}
+
+.menu-trigger span,
+.menu-trigger::before,
+.menu-trigger::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: white;
+    transition: 0.3s;
+}
+
+.menu-trigger span {
+    top: 9px;
+}
+
+.menu-trigger::before {
+    top: 0;
+}
+
+.menu-trigger::after {
+    bottom: 0;
+}
+
+.active-trigger span {
+    opacity: 0;
+}
+
+.active-trigger::before {
+    transform: rotate(45deg);
+    top: 9px;
+}
+
+.active-trigger::after {
+    transform: rotate(-45deg);
+    bottom: 9px;
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100%;
+    background: #000;
+    z-index: 2000;
+    transform: translateX(-100%);
+    transition: var(--transition);
+    border-right: 2px solid var(--nasa-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.side-menu.active {
+    transform: translateX(0);
+}
+
+.nav-links a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-size: 1.3rem;
+    padding: 15px 0;
+    letter-spacing: 3px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--nasa-red);
+    transform: scale(1.05);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 20px;
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    letter-spacing: 6px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #eee;
+}
+
+.btn-nasa {
+    padding: 12px 30px;
+    background: transparent;
+    border: 2px solid var(--nasa-red);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+    letter-spacing: 1px;
+    border-radius: 2px;
+}
+
+.btn-nasa:hover {
+    background: var(--nasa-red);
+    box-shadow: 0 0 20px var(--nasa-red);
+}
+
+.btn-small {
+    padding: 8px 15px;
+    font-size: 0.7rem;
+}
+
+.secondary {
+    border-color: white;
+}
+
+.secondary:hover {
+    background: white;
+    color: black;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: var(--glass);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+}
+
+.result-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+    position: relative;
+    transition: 0.3s;
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.result-item:hover {
+    border-color: var(--nasa-red);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.result-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#apodResult img {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+.result-item h3,
+.result-item p {
+    font-size: 0.9rem;
+    color: #eee;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card p.status-msg {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+}
+
+.result-item button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--nasa-red);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    z-index: 5;
+}
+
+.result-item button:hover {
+    transform: scale(1.2);
+    background: #ff0000;
+}
+
+.storage {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    color: #00ff41;
+    /* Verde terminal */
+    text-align: left;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: rgba(0, 255, 65, 0.05);
+    border-left: 3px solid #00ff41;
+    display: inline-block;
+}
+
+.main-footer {
+    background: rgba(0, 0, 0, 0.95);
+    border-top: 1px solid var(--nasa-red);
+    padding: 50px 20px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.dev-name {
+    color: var(--nasa-red);
+    font-weight: bold;
+}
+
+.footer-tags {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 0.85rem;
+    color: #777;
+    margin: 15px 0;
+}
+
+.rights {
+    font-size: 0.8rem;
+    color: #555;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+}
+
+input {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #444;
+    color: white;
+    border-radius: 4px;
+    outline: none;
+}
+
+input:focus {
+    border-color: var(--nasa-red);
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

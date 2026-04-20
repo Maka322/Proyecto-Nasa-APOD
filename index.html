@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorando la Nasa</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <header class="nav-bar">
+        <div class="menu-trigger" id="menuBtn"><span></span></div>
+    </header>
+
+    <nav class="side-menu" id="sideMenu">
+        <div class="nav-links">
+            <a href="#inicio">INICIO</a>
+            <a href="#apod-section">FOTO DEL DÍA</a>
+            <a href="#library-section">BIBLIOTECA</a>
+            <a href="#fav-section">FAVORITOS</a>
+        </div>
+    </nav>
+
+    <main id="inicio">
+        <section class="hero">
+            <h1>HURRA, ESTAMOS EN EL ESPACIO</h1>
+            <button class="btn-nasa" id="exploreBtn">INICIAR MISIÓN</button>
+        </section>
+
+        <section class="container fade-in" id="apod-section">
+            <h2 class="section-title">Bellezas del Universo, Foto del Día</h2>
+            <div class="controls">
+                <input type="date" id="dateInput">
+                <button class="btn-nasa btn-small" id="searchBtn">BUSCAR</button>
+                <button id="favBtn" class="btn-nasa btn-small secondary">★ GUARDAR</button>
+            </div>
+            <div id="apodResult" class="card">
+                <p class="status-msg">Conectando con la base de datos</p>
+            </div>
+        </section>
+
+        <section class="container fade-in" id="library-section">
+            <h2 class="section-title">Consulta de Archivos Especiales</h2>
+            <div class="controls">
+                <input type="text" id="libraryQuery" placeholder="Ej: Mars, Nebula...">
+                <button class="btn-nasa btn-small" id="btnLibrarySearch">EXPLORAR</button>
+            </div>
+            <div id="libraryResults" class="grid"></div>
+        </section>
+
+        <section class="container fade-in" id="fav-section">
+            <h2 class="section-title">Datos Curiosos</h2>
+            <div id="storageQuota" class="storage"></div>
+            <div id="favList" class="grid"></div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>&copy; 2026 <span class="dev-name">Marcia Baquero</span> | Junior Full-Stack Developer</p>
+            <div class="footer-tags">
+                <span>#CleanCode</span>
+                <span>#FrontendPassion</span>
+                <span>#GenerationCol</span>
+                <span>#SENA</span>
+            </div>
+            <p class="rights">Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
